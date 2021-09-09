@@ -67,6 +67,9 @@ MonoBehaviour:
   jumpStrength: 100
   aircontrol: 1
   gravityModifier: 0.2
+  faceWithCamera: 1
+  playerCamera: {fileID: 0}
+  _animator: {fileID: 0}
 --- !u!1 &6008349638798043020
 GameObject:
   m_ObjectHideFlags: 0

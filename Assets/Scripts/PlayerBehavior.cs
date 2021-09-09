@@ -15,6 +15,13 @@ public class PlayerBehavior : MonoBehaviour
     private Vector3 _airVelocity;
     private bool _jumpIsDesired = false;
     private bool _isGrounded = false;
+    public bool faceWithCamera = true;
+
+    public Camera playerCamera;
+
+    [SerializeField]
+    private Animator _animator;
+
 
     private void Awake()
     {
@@ -24,9 +31,19 @@ public class PlayerBehavior : MonoBehaviour
     private void Update()
     {
         //Get movement input
-        _desiredVelocity.x = Input.GetAxis("Horizontal");
-        _desiredVelocity.y = 0.0f;
-        _desiredVelocity.z = Input.GetAxis("Vertical");
+        float InputForward = Input.GetAxis("Vertical");
+        float InputRight = Input.GetAxis("Horizontal");
+
+        //Get camera forward
+        Vector3 cameraForward = playerCamera.transform.forward;
+        cameraForward.y = 0.0f;
+        cameraForward.Normalize();
+
+        //Get camera right
+        Vector3 cameraRight = playerCamera.transform.right;
+
+        //Find the desired velocity
+        _desiredVelocity = (cameraForward * InputForward) + (cameraRight * InputRight);
 
         //Get jump input
         _jumpIsDesired = Input.GetButtonDown("Jump");
