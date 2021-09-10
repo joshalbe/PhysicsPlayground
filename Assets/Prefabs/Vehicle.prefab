@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 1345994242960014511}
   - component: {fileID: 6040476810723600213}
   - component: {fileID: 6930697616897839968}
+  - component: {fileID: 7682099920867729278}
   m_Layer: 0
   m_Name: MainBody
   m_TagString: Untagged
@@ -759,6 +760,21 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &7682099920867729278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122407766624732898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07dff86500f93174fb035ef3ac65dfe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankMass: 500
+  tankSpeed: 0
+  tankTurnSpeed: 0
 --- !u!1 &6137335734848891094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,14 +1552,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9aeb9bf13840425468ccf8abf3bd9241, type: 3}
---- !u!54 &7413386388712141608 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: -5520157894778529057, guid: 9aeb9bf13840425468ccf8abf3bd9241, type: 3}
-  m_PrefabInstance: {fileID: 6162566963841165815}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6809372918431065139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 863027119518698948, guid: 9aeb9bf13840425468ccf8abf3bd9241, type: 3}
+  m_PrefabInstance: {fileID: 6162566963841165815}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &7413386388712141608 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: -5520157894778529057, guid: 9aeb9bf13840425468ccf8abf3bd9241, type: 3}
   m_PrefabInstance: {fileID: 6162566963841165815}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6431256870408607742
