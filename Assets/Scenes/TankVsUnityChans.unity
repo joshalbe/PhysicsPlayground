@@ -731,7 +731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 581363808}
   distanceFromTarget: 20
-  sensitivity: 1000
+  sensitivity: 500
   invertY: 0
 --- !u!4 &1164712230 stripped
 Transform:

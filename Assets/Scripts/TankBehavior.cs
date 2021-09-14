@@ -109,6 +109,8 @@ public class TankBehavior : MonoBehaviour
         _upLeftWheel = _hingeJoints[13];
         _ulMotor = _upLeftWheel.motor;
 
+
+        //Assign the Hinges and Motors to their arrays for easier access later
         _tankHingesR[0] = _frontRightWheel; _tankHingesR[1] = _1RightWheel; _tankHingesR[2] = _2RightWheel;
         _tankHingesR[3] = _3RightWheel; _tankHingesR[4] = _4RightWheel; _tankHingesR[5] = _5RightWheel;
         _tankHingesR[6] = _upRightWheel;
@@ -126,7 +128,7 @@ public class TankBehavior : MonoBehaviour
 
     private void Update()
     {
-        GoForward(1000.0f, 300.0f);
+        //GoForward(1000.0f, 300.0f);
 
         _goingForward = Input.GetButtonDown("Up");
         _goingBack = Input.GetButtonDown("Down");
@@ -149,21 +151,21 @@ public class TankBehavior : MonoBehaviour
         {
             TurnLeft(1000.0f, 300.0f);
         }
-        else
-        {
-            TankStop(0.0f, 30.0f);
-        }
+        //else
+        //{
+        //    TankStop(0.0f, 30.0f);
+        //}
     }
 
     private void TankStop(float velocity, float force)
     {
-        for (int i = 0; i < _tankMotorsR.Length - 1; i++)
+        for (int i = 0; i < _tankMotorsR.Length; i++)
         {
             _tankMotorsR[i].targetVelocity = velocity;
             _tankMotorsR[i].force = force;
             _tankHingesR[i].motor = _tankMotorsR[i];
         }
-        for (int i = 0; i < _tankMotorsL.Length - 1; i++)
+        for (int i = 0; i < _tankMotorsL.Length; i++)
         {
             _tankMotorsL[i].targetVelocity = velocity;
             _tankMotorsL[i].force = force;
@@ -173,13 +175,13 @@ public class TankBehavior : MonoBehaviour
 
     private void TurnRight(float velocity, float force)
     {
-        for (int i = 0; i < _tankMotorsR.Length - 1; i++)
+        for (int i = 0; i < _tankMotorsR.Length; i++)
         {
             _tankMotorsR[i].targetVelocity = velocity;
             _tankMotorsR[i].force = force;
             _tankHingesR[i].motor = _tankMotorsR[i];
         }
-        for (int i = 0; i < _tankMotorsL.Length - 1; i++)
+        for (int i = 0; i < _tankMotorsL.Length; i++)
         {
             _tankMotorsL[i].targetVelocity = velocity;
             _tankMotorsL[i].force = force;
@@ -189,13 +191,13 @@ public class TankBehavior : MonoBehaviour
 
     private void TurnLeft(float velocity, float force)
     {
-        for (int i = 0; i < _tankMotorsR.Length - 1; i++)
+        for (int i = 0; i < _tankMotorsR.Length; i++)
         {
             _tankMotorsR[i].targetVelocity = -velocity;
             _tankMotorsR[i].force = force;
             _tankHingesR[i].motor = _tankMotorsR[i];
         }
-        for (int i = 0; i < _tankMotorsL.Length - 1; i++)
+        for (int i = 0; i < _tankMotorsL.Length; i++)
         {
             _tankMotorsL[i].targetVelocity = -velocity;
             _tankMotorsL[i].force = force;
@@ -205,13 +207,13 @@ public class TankBehavior : MonoBehaviour
 
     private void GoForward(float velocity, float force)
     {
-        for (int i = 0; i < _tankMotorsR.Length - 1; i++)
+        for (int i = 0; i < _tankMotorsR.Length; i++)
         {
             _tankMotorsR[i].targetVelocity = -velocity;
             _tankMotorsR[i].force = force;
             _tankHingesR[i].motor = _tankMotorsR[i];
         }
-        for (int i = 0; i < _tankMotorsL.Length - 1; i++)
+        for (int i = 0; i < _tankMotorsL.Length; i++)
         {
             _tankMotorsL[i].targetVelocity = velocity;
             _tankMotorsL[i].force = force;
@@ -221,13 +223,13 @@ public class TankBehavior : MonoBehaviour
 
     private void GoBackwards(float velocity, float force)
     {
-        for (int i = 0; i < _tankMotorsR.Length - 1; i++)
+        for (int i = 0; i < _tankMotorsR.Length; i++)
         {
             _tankMotorsR[i].targetVelocity = velocity;
             _tankMotorsR[i].force = force;
             _tankHingesR[i].motor = _tankMotorsR[i];
         }
-        for (int i = 0; i < _tankMotorsL.Length - 1; i++)
+        for (int i = 0; i < _tankMotorsL.Length; i++)
         {
             _tankMotorsL[i].targetVelocity = -velocity;
             _tankMotorsL[i].force = force;
