@@ -130,45 +130,66 @@ public class TankBehavior : MonoBehaviour
     {
         //GoForward(1000.0f, 300.0f);
 
-        _goingForward = Input.GetButtonDown("Up");
-        _goingBack = Input.GetButtonDown("Down");
-        _goingRight = Input.GetButtonDown("Right");
-        _goingLeft = Input.GetButtonDown("Left");
+        float verticalMovement = Input.GetAxis("Vertical");
+        float horizontalMovement = Input.GetAxis("Horizontal");
 
-        if (_goingForward)
-        {
-            GoForward(1000.0f, 300.0f);
-        }
-        else if (_goingBack)
-        {
-            GoBackwards(1000.0f, 300.0f);
-        }
-        else if (_goingRight)
-        {
-            TurnRight(1000.0f, 300.0f);
-        }
-        else if (_goingLeft)
-        {
-            TurnLeft(1000.0f, 300.0f);
-        }
-        //else
-        //{
-        //    TankStop(0.0f, 30.0f);
-        //}
+        if (verticalMovement > 0)
+            GoForward(1000.0f, 200.0f);
+        else if (verticalMovement < 0)
+            GoBackwards(1000.0f, 200.0f);
+        else if (horizontalMovement > 0)
+            TurnRight(1000.0f, 200.0f);
+        else if (horizontalMovement < 0)
+            TurnLeft(1000.0f, 200.0f);
+        else
+            TankStop(100.0f, 100.0f);
+
     }
 
-    private void TankStop(float velocity, float force)
+    private void TankStop(float stoppingVelocity, float stoppingForce)
     {
         for (int i = 0; i < _tankMotorsR.Length; i++)
         {
-            _tankMotorsR[i].targetVelocity = velocity;
-            _tankMotorsR[i].force = force;
+            if (_tankMotorsR[i].targetVelocity < 0.0f)
+            {
+                _tankMotorsR[i].targetVelocity += stoppingVelocity;
+                if (_tankMotorsR[i].targetVelocity > 0.0f)
+                    _tankMotorsR[i].targetVelocity = 0.0f;
+            }
+            else if (_tankMotorsR[i].targetVelocity > 0.0f)
+            {
+                _tankMotorsR[i].targetVelocity -= stoppingVelocity;
+                if (_tankMotorsR[i].targetVelocity < 0.0f)
+                    _tankMotorsR[i].targetVelocity = 0.0f;
+            }
+            if (_tankMotorsR[i].force > 0.0f)
+            {
+                _tankMotorsR[i].force -= stoppingForce;
+                if (_tankMotorsR[i].force < 0.0f)
+                    _tankMotorsR[i].force = 0.0f;
+            }
             _tankHingesR[i].motor = _tankMotorsR[i];
         }
         for (int i = 0; i < _tankMotorsL.Length; i++)
         {
-            _tankMotorsL[i].targetVelocity = velocity;
-            _tankMotorsL[i].force = force;
+            if (_tankMotorsL[i].targetVelocity < 0.0f)
+            {
+                _tankMotorsL[i].targetVelocity += stoppingVelocity;
+                if (_tankMotorsL[i].targetVelocity > 0.0f)
+                    _tankMotorsL[i].targetVelocity = 0.0f;
+            }
+            else if (_tankMotorsL[i].targetVelocity > 0.0f)
+            {
+                _tankMotorsL[i].targetVelocity -= stoppingVelocity;
+                if (_tankMotorsL[i].targetVelocity < 0.0f)
+                    _tankMotorsL[i].targetVelocity = 0.0f;
+            }
+            if (_tankMotorsL[i].force > 0.0f)
+            {
+                _tankMotorsL[i].force -= stoppingForce;
+                if (_tankMotorsL[i].force < 0.0f)
+                    _tankMotorsL[i].force = 0.0f;
+            }
             _tankHingesL[i].motor = _tankMotorsL[i];
         }
     }
