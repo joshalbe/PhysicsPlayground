@@ -13,10 +13,10 @@ public class TankBehavior : MonoBehaviour
 
     private CharacterController _tankController;
 
-    private bool _goingForward;
-    private bool _goingBack;
-    private bool _goingRight;
-    private bool _goingLeft;
+    private bool _goingForward = false;
+    private bool _goingBack = false;
+    private bool _goingRight = false;
+    private bool _goingLeft = false;
 
     //List of Hinge Joints
     private HingeJoint[] _hingeJoints;
@@ -108,24 +108,82 @@ public class TankBehavior : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKeyDown(""))
+        _goingForward = Input.GetButtonDown("Up");
+        _goingBack = Input.GetButtonDown("Down");
+        _goingRight = Input.GetButtonDown("Right");
+        _goingLeft = Input.GetButtonDown("Left");
 
-        if (_goingForward) 
+        if (_goingForward)
         {
             GoForward();
-        } 
+        }
         else if (_goingBack)
         {
             GoBackwards();
-        } 
+        }
         else if (_goingRight)
         {
             TurnRight();
-        } 
+        }
         else if (_goingLeft)
         {
             TurnLeft();
         }
+        else
+        {
+            TankStop();
+        }
+    }
+
+    private void TankStop()
+    {
+        _frMotor.targetVelocity = 0.0f;
+        _1rMotor.targetVelocity = 0.0f;
+        _2rMotor.targetVelocity = 0.0f;
+        _3rMotor.targetVelocity = 0.0f;
+        _4rMotor.targetVelocity = 0.0f;
+        _5rMotor.targetVelocity = 0.0f;
+        _urMotor.targetVelocity = 0.0f;
+
+        _flMotor.targetVelocity = 0.0f;
+        _1lMotor.targetVelocity = 0.0f;
+        _2lMotor.targetVelocity = 0.0f;
+        _3lMotor.targetVelocity = 0.0f;
+        _4lMotor.targetVelocity = 0.0f;
+        _5lMotor.targetVelocity = 0.0f;
+        _ulMotor.targetVelocity = 0.0f;
+
+        _frMotor.force = 30.0f;
+        _1rMotor.force = 30.0f;
+        _2rMotor.force = 30.0f;
+        _3rMotor.force = 30.0f;
+        _4rMotor.force = 30.0f;
+        _5rMotor.force = 30.0f;
+        _urMotor.force = 30.0f;
+
+        _flMotor.force = 30.0f;
+        _1lMotor.force = 30.0f;
+        _2lMotor.force = 30.0f;
+        _3lMotor.force = 30.0f;
+        _4lMotor.force = 30.0f;
+        _5lMotor.force = 30.0f;
+        _ulMotor.force = 30.0f;
+
+        _frontRightWheel.motor = _frMotor;
+        _1RightWheel.motor = _1rMotor;
+        _2RightWheel.motor = _2rMotor;
+        _3RightWheel.motor = _3rMotor;
+        _4RightWheel.motor = _4rMotor;
+        _5RightWheel.motor = _5rMotor;
+        _upRightWheel.motor = _urMotor;
+
+        _frontLeftWheel.motor = _flMotor;
+        _1LeftWheel.motor = _1lMotor;
+        _2LeftWheel.motor = _2lMotor;
+        _3LeftWheel.motor = _3lMotor;
+        _4LeftWheel.motor = _4lMotor;
+        _5LeftWheel.motor = _5lMotor;
+        _upLeftWheel.motor = _ulMotor;
     }
 
     private void TurnRight()
@@ -145,6 +203,38 @@ public class TankBehavior : MonoBehaviour
         _4lMotor.targetVelocity = 1000.0f;
         _5lMotor.targetVelocity = 1000.0f;
         _ulMotor.targetVelocity = 1000.0f;
+
+        _frMotor.force = 300.0f;
+        _1rMotor.force = 300.0f;
+        _2rMotor.force = 300.0f;
+        _3rMotor.force = 300.0f;
+        _4rMotor.force = 300.0f;
+        _5rMotor.force = 300.0f;
+        _urMotor.force = 300.0f;
+
+        _flMotor.force = 300.0f;
+        _1lMotor.force = 300.0f;
+        _2lMotor.force = 300.0f;
+        _3lMotor.force = 300.0f;
+        _4lMotor.force = 300.0f;
+        _5lMotor.force = 300.0f;
+        _ulMotor.force = 300.0f;
+
+        _frontRightWheel.motor = _frMotor;
+        _1RightWheel.motor = _1rMotor;
+        _2RightWheel.motor = _2rMotor;
+        _3RightWheel.motor = _3rMotor;
+        _4RightWheel.motor = _4rMotor;
+        _5RightWheel.motor = _5rMotor;
+        _upRightWheel.motor = _urMotor;
+
+        _frontLeftWheel.motor = _flMotor;
+        _1LeftWheel.motor = _1lMotor;
+        _2LeftWheel.motor = _2lMotor;
+        _3LeftWheel.motor = _3lMotor;
+        _4LeftWheel.motor = _4lMotor;
+        _5LeftWheel.motor = _5lMotor;
+        _upLeftWheel.motor = _ulMotor;
     }
 
     private void TurnLeft()
@@ -164,6 +254,38 @@ public class TankBehavior : MonoBehaviour
         _4lMotor.targetVelocity = -1000.0f;
         _5lMotor.targetVelocity = -1000.0f;
         _ulMotor.targetVelocity = -1000.0f;
+
+        _frMotor.force = 300.0f;
+        _1rMotor.force = 300.0f;
+        _2rMotor.force = 300.0f;
+        _3rMotor.force = 300.0f;
+        _4rMotor.force = 300.0f;
+        _5rMotor.force = 300.0f;
+        _urMotor.force = 300.0f;
+
+        _flMotor.force = 300.0f;
+        _1lMotor.force = 300.0f;
+        _2lMotor.force = 300.0f;
+        _3lMotor.force = 300.0f;
+        _4lMotor.force = 300.0f;
+        _5lMotor.force = 300.0f;
+        _ulMotor.force = 300.0f;
+
+        _frontRightWheel.motor = _frMotor;
+        _1RightWheel.motor = _1rMotor;
+        _2RightWheel.motor = _2rMotor;
+        _3RightWheel.motor = _3rMotor;
+        _4RightWheel.motor = _4rMotor;
+        _5RightWheel.motor = _5rMotor;
+        _upRightWheel.motor = _urMotor;
+
+        _frontLeftWheel.motor = _flMotor;
+        _1LeftWheel.motor = _1lMotor;
+        _2LeftWheel.motor = _2lMotor;
+        _3LeftWheel.motor = _3lMotor;
+        _4LeftWheel.motor = _4lMotor;
+        _5LeftWheel.motor = _5lMotor;
+        _upLeftWheel.motor = _ulMotor;
     }
 
     private void GoForward()
@@ -183,6 +305,38 @@ public class TankBehavior : MonoBehaviour
         _4lMotor.targetVelocity = 1000.0f;
         _5lMotor.targetVelocity = 1000.0f;
         _ulMotor.targetVelocity = 1000.0f;
+
+        _frMotor.force = 300.0f;
+        _1rMotor.force = 300.0f;
+        _2rMotor.force = 300.0f;
+        _3rMotor.force = 300.0f;
+        _4rMotor.force = 300.0f;
+        _5rMotor.force = 300.0f;
+        _urMotor.force = 300.0f;
+
+        _flMotor.force = 300.0f;
+        _1lMotor.force = 300.0f;
+        _2lMotor.force = 300.0f;
+        _3lMotor.force = 300.0f;
+        _4lMotor.force = 300.0f;
+        _5lMotor.force = 300.0f;
+        _ulMotor.force = 300.0f;
+
+        _frontRightWheel.motor = _frMotor;
+        _1RightWheel.motor = _1rMotor;
+        _2RightWheel.motor = _2rMotor;
+        _3RightWheel.motor = _3rMotor;
+        _4RightWheel.motor = _4rMotor;
+        _5RightWheel.motor = _5rMotor;
+        _upRightWheel.motor = _urMotor;
+
+        _frontLeftWheel.motor = _flMotor;
+        _1LeftWheel.motor = _1lMotor;
+        _2LeftWheel.motor = _2lMotor;
+        _3LeftWheel.motor = _3lMotor;
+        _4LeftWheel.motor = _4lMotor;
+        _5LeftWheel.motor = _5lMotor;
+        _upLeftWheel.motor = _ulMotor;
     }
 
     private void GoBackwards()
@@ -202,5 +356,37 @@ public class TankBehavior : MonoBehaviour
         _4lMotor.targetVelocity = -1000.0f;
         _5lMotor.targetVelocity = -1000.0f;
         _ulMotor.targetVelocity = -1000.0f;
+
+        _frMotor.force = 300.0f;
+        _1rMotor.force = 300.0f;
+        _2rMotor.force = 300.0f;
+        _3rMotor.force = 300.0f;
+        _4rMotor.force = 300.0f;
+        _5rMotor.force = 300.0f;
+        _urMotor.force = 300.0f;
+
+        _flMotor.force = 300.0f;
+        _1lMotor.force = 300.0f;
+        _2lMotor.force = 300.0f;
+        _3lMotor.force = 300.0f;
+        _4lMotor.force = 300.0f;
+        _5lMotor.force = 300.0f;
+        _ulMotor.force = 300.0f;
+
+        _frontRightWheel.motor = _frMotor;
+        _1RightWheel.motor = _1rMotor;
+        _2RightWheel.motor = _2rMotor;
+        _3RightWheel.motor = _3rMotor;
+        _4RightWheel.motor = _4rMotor;
+        _5RightWheel.motor = _5rMotor;
+        _upRightWheel.motor = _urMotor;
+
+        _frontLeftWheel.motor = _flMotor;
+        _1LeftWheel.motor = _1lMotor;
+        _2LeftWheel.motor = _2lMotor;
+        _3LeftWheel.motor = _3lMotor;
+        _4LeftWheel.motor = _4lMotor;
+        _5LeftWheel.motor = _5lMotor;
+        _upLeftWheel.motor = _ulMotor;
     }
 }
