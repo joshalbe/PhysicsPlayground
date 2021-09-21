@@ -11,23 +11,25 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        //Rotate the camera
-        if (Input.GetMouseButton(1))
+        if (target)
         {
-            Vector3 angles = transform.eulerAngles;
-            Vector2 rotation;
-            rotation.x = Input.GetAxis("Mouse Y") * (invertY ? 1.0f : -1.0f);
-            rotation.y = Input.GetAxis("Mouse X");
-            //Look up and down by rotating around X-axis
-            angles.x = Mathf.Clamp(angles.x + rotation.x * sensitivity * Time.deltaTime, 0.0f, 70.0f);
-            //Look left and right by rotating around the Y-axis
-            angles.y += rotation.y * sensitivity * Time.deltaTime;
-            //Set the angles
-            transform.eulerAngles = angles;
+            //Rotate the camera
+            if (Input.GetMouseButton(1))
+            {
+                Vector3 angles = transform.eulerAngles;
+                Vector2 rotation;
+                rotation.x = Input.GetAxis("Mouse Y") * (invertY ? 1.0f : -1.0f);
+                rotation.y = Input.GetAxis("Mouse X");
+                //Look up and down by rotating around X-axis
+                angles.x = Mathf.Clamp(angles.x + rotation.x * sensitivity * Time.deltaTime, 0.0f, 70.0f);
+                //Look left and right by rotating around the Y-axis
+                angles.y += rotation.y * sensitivity * Time.deltaTime;
+                //Set the angles
+                transform.eulerAngles = angles;
+            }
+
+            //Move the camera
+            transform.position = target.position + (distanceFromTarget * -transform.forward);
         }
-
-        //Move the camera
-        transform.position = target.position + (distanceFromTarget * -transform.forward);
-
     }
 }

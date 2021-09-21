@@ -7,6 +7,10 @@ public class ProjectileLauncher : MonoBehaviour
     public Transform target;
     public Rigidbody projectile;
 
+    [SerializeField]
+    public float launchInterval = 0.1f;
+    private float _launchTime;
+    [SerializeField]
     public float projectileTime = 2;
 
     private Vector3 _displacement = new Vector3();
@@ -15,11 +19,34 @@ public class ProjectileLauncher : MonoBehaviour
     private Vector3 _initialVelocity = new Vector3();
     private Vector3 _finalVelocity = new Vector3();
 
+    private void Awake()
+    {
+        _launchTime = 3.0f;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
             LaunchProjectile();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        _launchTime -= 0.01f;
+        if (_launchTime <= 0.0f)
+        {
+            if (target)
+            {
+                LaunchProjectile();
+            }
+            _launchTime = launchInterval;
+            launchInterval -= 0.01f;
+            if (launchInterval < 0.0f)
+            {
+                launchInterval = 0.0f;
+            }
         }
     }
 
