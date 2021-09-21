@@ -11,7 +11,7 @@ public class TankBehavior : MonoBehaviour
     [SerializeField]
     public float tankTurnSpeed;
     [SerializeField]
-    public int tankHealth = 30;
+    public int tankHealth = 40;
 
     private CharacterController _tankController;
 
@@ -153,6 +153,8 @@ public class TankBehavior : MonoBehaviour
     {
         if (collision.gameObject.tag == "Projectile")
             tankHealth -= 1;
+        //else if (collision.gameObject.tag == "Goal")
+        //    tankHealth += 1000;
     }
 
     private void TankStop(float stoppingVelocity, float stoppingForce)
@@ -237,33 +239,46 @@ public class TankBehavior : MonoBehaviour
 
     private void GoForward(float velocity, float force)
     {
-        for (int i = 0; i < _tankMotorsR.Length; i++)
+        for (int i = 1; i < _tankMotorsR.Length; i++)
         {
             _tankMotorsR[i].targetVelocity = -velocity;
             _tankMotorsR[i].force = force;
             _tankHingesR[i].motor = _tankMotorsR[i];
         }
-        for (int i = 0; i < _tankMotorsL.Length; i++)
+        for (int i = 1; i < _tankMotorsL.Length; i++)
         {
             _tankMotorsL[i].targetVelocity = velocity;
             _tankMotorsL[i].force = force;
             _tankHingesL[i].motor = _tankMotorsL[i];
         }
+        _tankMotorsR[0].targetVelocity = -velocity * 2;
+        _tankMotorsR[0].force = force * 2;
+        _tankHingesR[0].motor = _tankMotorsR[0];
+        _tankMotorsL[0].targetVelocity = velocity * 2;
+        _tankMotorsL[0].force = force * 2;
+        _tankHingesL[0].motor = _tankMotorsL[0];
+
     }
 
     private void GoBackwards(float velocity, float force)
     {
-        for (int i = 0; i < _tankMotorsR.Length; i++)
+        for (int i = 0; i < _tankMotorsR.Length - 1; i++)
         {
             _tankMotorsR[i].targetVelocity = velocity;
             _tankMotorsR[i].force = force;
             _tankHingesR[i].motor = _tankMotorsR[i];
         }
-        for (int i = 0; i < _tankMotorsL.Length; i++)
+        for (int i = 0; i < _tankMotorsL.Length - 1; i++)
         {
             _tankMotorsL[i].targetVelocity = -velocity;
             _tankMotorsL[i].force = force;
             _tankHingesL[i].motor = _tankMotorsL[i];
         }
+        _tankMotorsR[_tankMotorsR.Length - 1].targetVelocity = velocity * 2;
+        _tankMotorsR[_tankMotorsR.Length - 1].force = force * 2;
+        _tankHingesR[_tankHingesR.Length - 1].motor = _tankMotorsR[_tankMotorsR.Length - 1];
+        _tankMotorsL[_tankMotorsL.Length - 1].targetVelocity = -velocity * 2;
+        _tankMotorsL[_tankMotorsL.Length - 1].force = force * 2;
+        _tankHingesL[_tankHingesL.Length - 1].motor = _tankMotorsL[_tankMotorsL.Length - 1];
     }
 }
