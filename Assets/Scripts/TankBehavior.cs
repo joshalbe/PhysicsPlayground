@@ -10,6 +10,8 @@ public class TankBehavior : MonoBehaviour
     public float tankSpeed;
     [SerializeField]
     public float tankTurnSpeed;
+    [SerializeField]
+    public int tankHealth = 30;
 
     private CharacterController _tankController;
 
@@ -128,7 +130,8 @@ public class TankBehavior : MonoBehaviour
 
     private void Update()
     {
-        //GoForward(1000.0f, 300.0f);
+        if (tankHealth <= 0)
+            Destroy(gameObject);
 
         float verticalMovement = Input.GetAxis("Vertical");
         float horizontalMovement = Input.GetAxis("Horizontal");
@@ -144,6 +147,12 @@ public class TankBehavior : MonoBehaviour
         else
             TankStop(100.0f, 100.0f);
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Projectile")
+            tankHealth -= 1;
     }
 
     private void TankStop(float stoppingVelocity, float stoppingForce)
