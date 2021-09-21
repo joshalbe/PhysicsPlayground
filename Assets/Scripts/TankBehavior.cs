@@ -153,8 +153,11 @@ public class TankBehavior : MonoBehaviour
     {
         if (collision.gameObject.tag == "Projectile")
             tankHealth -= 1;
-        //else if (collision.gameObject.tag == "Goal")
-        //    tankHealth += 1000;
+        else if (collision.gameObject.tag == "Health")
+        {
+            tankHealth += 10;
+            collision.gameObject.SetActive(false);
+        }
     }
 
     private void TankStop(float stoppingVelocity, float stoppingForce)
