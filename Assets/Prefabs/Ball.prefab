@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9165820019494612702}
   - component: {fileID: 9165820019494612703}
   - component: {fileID: 9165820019494612704}
+  - component: {fileID: 3694095891634545827}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -127,3 +128,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   awakeMaterial: {fileID: 2100000, guid: 2a1b38b6e2e08ef4f92add8573fa9ac1, type: 2}
   asleepMaterial: {fileID: 2100000, guid: e619ddf3feb89c54ea094140e46b4be1, type: 2}
+--- !u!114 &3694095891634545827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9165820019494612705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef78828b863c7dd45b3e42f07a475322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  despawnTimer: 3
