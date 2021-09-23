@@ -1,16 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ChaserBehavior : MonoBehaviour
 {
-    public Transform target;
+    [SerializeField]
+    public GameObject target;
+    private Vector3 _pastPosition;
+    private NavMeshAgent _agent;
+    private Vector3 _chaseDestination;
+
+    private void Start()
+    {
+        _agent = GetComponent<NavMeshAgent>();
+
+        StartCoroutine(PastPositionUpdate());
+    }
 
     private void Update()
     {
-        float currentDistance = Vector3.Distance(target.position, gameObject.transform.position);
+        if (!target)
+        {
+            return;
+        }
 
-        if (currentDistance <= 10.0f)
+        float currentDistance = Vector3.Distance(target.transform.position, _agent.transform.position);
+        _chaseDestination = target.transform.position/* - _pastPosition*/;
+        if (currentDistance <= 85.0f)
         {
             Chase();
         }
@@ -18,6 +35,15 @@ public class ChaserBehavior : MonoBehaviour
 
     public void Chase()
     {
-        //gameObject.velocity = 
+        
+        _agent.SetDestination(_chaseDestination);
+    }
+
+    private IEnumerator PastPositionUpdate()
+    {
+        //Drop a waypoint of the target's location
+        _pastPosition = target.transform.position;
+        //Wait 1.5 seconds to drop a new waypoint
+        yield return new WaitForSeconds(1.5f);
     }
 }
