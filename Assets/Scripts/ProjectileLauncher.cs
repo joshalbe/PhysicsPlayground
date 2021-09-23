@@ -42,7 +42,7 @@ public class ProjectileLauncher : MonoBehaviour
                 LaunchProjectile();
             }
             _launchTime = launchInterval;
-            launchInterval -= 0.01f;
+            launchInterval -= 0.005f;
             if (launchInterval < 0.0f)
             {
                 launchInterval = 0.0f;
