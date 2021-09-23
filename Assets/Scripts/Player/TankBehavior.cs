@@ -11,7 +11,7 @@ public class TankBehavior : MonoBehaviour
     [SerializeField]
     public float tankTurnSpeed;
     [SerializeField]
-    public int tankHealth = 40;
+    public int tankHealth = 50000000;
 
     private CharacterController _tankController;
 
@@ -152,10 +152,15 @@ public class TankBehavior : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Projectile")
-            tankHealth -= 1;
+            tankHealth -= 3;
         else if (collision.gameObject.tag == "Health")
         {
             tankHealth += 10;
+            collision.gameObject.SetActive(false);
+        }
+        else if (collision.gameObject.tag == "Chaser")
+        {
+            tankHealth -= 1;
             collision.gameObject.SetActive(false);
         }
     }

@@ -26,7 +26,7 @@ public class ChaserBehavior : MonoBehaviour
         }
 
         float currentDistance = Vector3.Distance(target.transform.position, _agent.transform.position);
-        _chaseDestination = target.transform.position/* - _pastPosition*/;
+        _chaseDestination = target.transform.position;
         if (currentDistance <= 85.0f)
         {
             Chase();
@@ -35,7 +35,6 @@ public class ChaserBehavior : MonoBehaviour
 
     public void Chase()
     {
-        
         _agent.SetDestination(_chaseDestination);
     }
 
