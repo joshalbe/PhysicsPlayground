@@ -18,6 +18,6 @@ public class ChaserBehavior : MonoBehaviour
 
     public void Chase()
     {
-
+        //gameObject.velocity = 
     }
 }
