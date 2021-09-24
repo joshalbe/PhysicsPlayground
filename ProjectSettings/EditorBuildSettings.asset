@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/TankVsUnityChans.unity
+    guid: 4b3c77694169ce346bd4cc878fb49d5b
   m_configObjects: {}
